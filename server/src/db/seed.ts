@@ -4,14 +4,13 @@ import { schema } from './schema/index.ts';
 
 await reset(db, schema);
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-await seed(db, schema).refine((f: any) => {
+await seed(db, schema).refine((f) => {
   return {
     rooms: {
       count: 20,
       columns: {
-        name: f.companyName,
-        description: f.loremIpsum,
+        name: f.companyName(),
+        description: f.loremIpsum(),
       },
     },
   };
