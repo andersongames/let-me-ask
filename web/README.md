@@ -1,69 +1,74 @@
-# React + TypeScript + Vite
+# 🌐 NLW Agents - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project developed during a 🚀 Rocketseat event to demonstrate the use of AI agents on the web.
 
-Currently, two official plugins are available:
+## 🧰 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** – Library for building user interfaces
+- **TypeScript** – JavaScript superset with static typing
+- **Vite** – Fast build tool and development server
+- **Tailwind CSS** – Utility-first CSS framework
+- **React Router DOM** – Routing library for React
+- **TanStack React Query** – Server state management and caching
+- **Radix UI** – Accessible primitive components
+- **shadcn/ui** – Component system
+- **Lucide React** – Icon library
 
-## Expanding the ESLint configuration
+## 🧱 Design Patterns
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Component-based Architecture** – Modular UI with reusable React components
+- **File-based Routing** – Routing based on file structure using React Router
+- **Server State Management** – Managed via React Query
+- **Variant-based Components** – Using CVA (Class Variance Authority)
+- **Composition Patterns** – With Radix Slot for flexible components
+- **Path Aliasing** – Aliases like `@/` point to `src/`
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Project Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### ✅ Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (version 18 or above)
+- npm or yarn
+
+### Installation
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd web
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Run development server
+
+```bash
+npm run dev
+```
+
+### 4. Open the app at: [http://localhost:5173](http://localhost:5173)
+
+## 📜 Available Scripts
+
+- `npm run dev` – Starts the development server
+- `npm run build` – Builds the app for production
+- `npm run preview` – Previews the production build
+
+## 🔗 Backend Dependency
+
+This project consumes an API that must be running on port `3333`. Make sure the backend is properly configured and running before starting the frontend.
+
+## 🗂️ Project Structure
+
+```
+src/
+├── components/ui     # UI components
+├── pages/            # Application pages
+├── lib/              # Utilities and configs
+└── app.tsx           # Root component
 ```
