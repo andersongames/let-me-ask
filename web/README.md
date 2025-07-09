@@ -13,6 +13,7 @@ Project developed during a 🚀 Rocketseat event to demonstrate the use of AI ag
 - **Radix UI** – Accessible primitive components
 - **shadcn/ui** – Component system
 - **Lucide React** – Icon library
+- **Day.js** - Date
 
 ## 🧱 Design Patterns
 
