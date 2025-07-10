@@ -20,7 +20,6 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useCreateQuestion } from '@/http/use-create-question';
 
-// Esquema de validação no mesmo arquivo conforme solicitado
 const createQuestionSchema = z.object({
   question: z
     .string()
@@ -36,14 +35,16 @@ interface QuestionFormProps {
 }
 
 export function QuestionForm({ roomId }: QuestionFormProps) {
-  const {  mutateAsync: createQuestion } = useCreateQuestion(roomId);
+  const { mutateAsync: createQuestion } = useCreateQuestion(roomId);
 
   const form = useForm<CreateQuestionFormData>({
     resolver: zodResolver(createQuestionSchema),
     defaultValues: {
       question: '',
-    },  
+    },
   });
+
+  const { isSubmitting } = form.formState;
 
   async function handleCreateQuestion(data: CreateQuestionFormData) {
     await createQuestion(data);
@@ -72,6 +73,7 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
                   <FormControl>
                     <Textarea
                       className="min-h-[100px]"
+                      disabled={isSubmitting}
                       placeholder="O que você gostaria de saber?"
                       {...field}
                     />
@@ -81,7 +83,9 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
               )}
             />
 
-            <Button type="submit">Enviar pergunta</Button>
+            <Button disabled={isSubmitting} type="submit">
+              Enviar pergunta
+            </Button>
           </form>
         </Form>
       </CardContent>

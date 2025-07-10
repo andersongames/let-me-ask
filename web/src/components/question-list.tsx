@@ -1,5 +1,5 @@
 import { useRoomQuestions } from '@/http/use-room-questions';
-import { QuestionItem } from './ui/question-item';
+import { QuestionItem } from './question-item';
 
 interface QuestionListProps {
   roomId: string;
