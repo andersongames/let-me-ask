@@ -36,11 +36,22 @@ GET {{baseUrl}}/rooms/{{roomId}}/questions
 
 ###
 
-# Post Create question
+# Post Create question, last created room
 # @name createQuestion
 POST {{baseUrl}}/rooms/{{roomId}}/questions
 Content-Type: application/json
 
 {
   "question": "This is a test question?"
+}
+
+###
+
+# Post Create question, custom room
+# @name createQuestion
+POST {{baseUrl}}/rooms/0dbc2f98-4968-44be-4fdb-f399737e5e21/questions
+Content-Type: application/json
+
+{
+  "question": "O que é React?"
 }

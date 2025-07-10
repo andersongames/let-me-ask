@@ -15,6 +15,13 @@
       "when": 1752059770758,
       "tag": "0001_broken_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752159814295,
+      "tag": "0002_remarkable_leech",
+      "breakpoints": true
     }
   ]
 }
