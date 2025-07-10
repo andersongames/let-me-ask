@@ -3,7 +3,7 @@ import type { FastifyPluginCallbackZod } from 'fastify-type-provider-zod';
 import { z } from 'zod/v4';
 import { db } from '../../db/connection.ts';
 import { schema } from '../../db/schema/index.ts';
-import { generateEmbeddings } from '../../services/gemini.ts';
+import { generateAnswer, generateEmbeddings } from '../../services/gemini.ts';
 
 export const CreateQuestionRoute: FastifyPluginCallbackZod = (app) => {
   app.post(
@@ -42,24 +42,32 @@ export const CreateQuestionRoute: FastifyPluginCallbackZod = (app) => {
         )
         .limit(3);
 
-      console.log(chunks);
-      return chunks;
+      let answer: string | null = null;
 
-      // const result = await db
-      //   .insert(schema.questions)
-      //   .values({
-      //     roomId,
-      //     question,
-      //   })
-      //   .returning();
+      if (chunks.length > 0) {
+        const transcriptions = chunks.map((chunk) => chunk.transcription);
+        answer = await generateAnswer(question, transcriptions);
+      }
 
-      // const insertedQuestion = result[0];
+      const result = await db
+        .insert(schema.questions)
+        .values({
+          roomId,
+          question,
+          answer,
+        })
+        .returning();
 
-      // if (!insertedQuestion) {
-      //   throw new Error('Failed to create new question.');
-      // }
+      const insertedQuestion = result[0];
 
-      // return reply.status(201).send({ questionId: insertedQuestion.id });
+      if (!insertedQuestion) {
+        throw new Error('Failed to create new question.');
+      }
+
+      return reply.status(201).send({
+        questionId: insertedQuestion.id,
+        answer,
+      });
     }
   );
 };

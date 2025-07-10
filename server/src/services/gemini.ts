@@ -8,11 +8,13 @@ const gemini = new GoogleGenAI({
 const model = 'gemini-2.5-flash';
 
 export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
+  const prompt =
+    'Transcreva o áudio para portugês do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos.';
   const response = await gemini.models.generateContent({
     model,
     contents: [
       {
-        text: 'Transcreva o áudio para portugês do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos.',
+        text: prompt,
       },
       {
         inlineData: {
@@ -44,4 +46,43 @@ export async function generateEmbeddings(text: string) {
   }
 
   return response.embeddings?.[0].values;
+}
+
+export async function generateAnswer(
+  question: string,
+  transcriptions: string[]
+) {
+  const context = transcriptions.join('\n\n');
+  const prompt = `
+  Com base no texto fornecido abaixo como contexto, responda a pergunta de forma  clara e precisa em português do Brasil.
+
+  CONTEXTO:
+  ${context}
+
+  PERGUNTA:
+  ${question}
+
+  INSTRUÇÕES:
+  - Use apenas informações contidas no contexto enviado;
+  - Se a resposta não for encontrada no contexto, apenas responda que não possuí informações suficientes para responder;
+  - Seja objetivo;
+  - Mantenha um tom educativo e profissional;
+  - Cite trechos relevantes do contexto se apropriado;
+  - Se for citar o contexto, utilize o termo "conteúdo da aula";
+  `.trim();
+
+  const response = await gemini.models.generateContent({
+    model,
+    contents: [
+      {
+        text: prompt,
+      },
+    ],
+  });
+
+  if (!response.text) {
+    throw new Error('Unable to generate answer.');
+  }
+
+  return response.text;
 }
