@@ -26,7 +26,7 @@ The project follows a modular and scalable architecture with:
 
 ### ✅ Prerequisites
 
-- Node.js (version 18+ with support for `--experimental-strip-types`)
+- Node.js (version 22.6.0+ with support for `--experimental-strip-types`)
 - Docker & Docker Compose
 
 ### 🚀 Getting Started

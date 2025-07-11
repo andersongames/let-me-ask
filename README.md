@@ -46,7 +46,7 @@ Imagine a teacher giving a live lecture. As the lecture progresses, students can
 ## ⚙️ Running Locally
 
 ### ✅ Prerequisites
-- Node.js v18+
+- Node.js v22.6.0+
 - Docker + Docker Compose
 - npm or yarn
 
