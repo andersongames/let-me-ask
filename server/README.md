@@ -1,4 +1,4 @@
-# 🤖 NLW Agents
+# 🤖 NLW Agents - Backend
 
 Project developed during a 🚀 Rocketseat event using modern technologies to create an API integrated with AI agents.
 

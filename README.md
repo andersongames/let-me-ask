@@ -57,7 +57,7 @@ Imagine a teacher giving a live lecture. As the lecture progresses, students can
 ```bash
 git clone <repository-url>
 cd let-me-ask/server
-cp .env.example .env  # Or manually create .env
+cp .env.example .env  # Or manually create .env; Setup your Gemini API Key in this file
 docker-compose up -d
 npm install
 npm run db:migrate
