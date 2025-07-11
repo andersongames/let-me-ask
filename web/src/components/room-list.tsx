@@ -17,13 +17,13 @@ export function RoomList() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Rooms</CardTitle>
+        <CardTitle>Salas recentes</CardTitle>
         <CardDescription>
-          Quick access to recently created rooms
+          Acesso rápido às salas criadas recentemente
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
-        {isLoading && <p>Loading rooms...</p>}
+        {isLoading && <p>Carregando salas...</p>}
         {data?.map((room) => {
           return (
             <Link
@@ -45,7 +45,7 @@ export function RoomList() {
               </div>
 
               <span className="flex items-center gap-1 text-sm">
-                Join
+                Entrar
                 <ArrowRight className="size-3" />
               </span>
             </Link>

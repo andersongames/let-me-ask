@@ -62,11 +62,11 @@ export function RecordRoomAudio() {
     };
 
     recorder.current.onstart = () => {
-      console.log('Recording started');
+      console.log('Gravação iniciada');
     };
 
     recorder.current.onstop = () => {
-      console.log('Recording stoped');
+      console.log('Gravação pausada');
     };
 
     recorder.current.start();
@@ -74,7 +74,7 @@ export function RecordRoomAudio() {
 
   async function startRecording() {
     if (!isRecordingSupported) {
-      alert('Your browser does not support recording.');
+      alert('Seu navegador não suporta gravação.');
       return;
     }
 
@@ -107,11 +107,11 @@ export function RecordRoomAudio() {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-3">
       {isRecording ? (
-        <Button onClick={stopRecording}>Pause Recording</Button>
+        <Button onClick={stopRecording}>Pausar gravação</Button>
       ) : (
-        <Button onClick={startRecording}>Record audio</Button>
+        <Button onClick={startRecording}>Começar gravação</Button>
       )}
-      {isRecording ? <p>Recording...</p> : <p>Paused</p>}
+      {isRecording ? <p>Gravando...</p> : <p>Gravação pausada</p>}
     </div>
   );
 }

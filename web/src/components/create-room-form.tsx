@@ -22,7 +22,7 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
 const createRoomSchema = z.object({
-  name: z.string().min(3, { message: 'Include at least 3 characters.' }),
+  name: z.string().min(3, { message: 'Incluir pelo menos 3 caracteres.' }),
   description: z.string(),
 });
 
@@ -53,8 +53,7 @@ export function CreateRoomForm() {
         <CardHeader>
           <CardTitle>Create room</CardTitle>
           <CardDescription>
-            Create a new room to start asking questions and receiving answers
-            from AI.
+            Crie uma nova sala para começar a fazer perguntas e receber respostas da IA.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -69,9 +68,9 @@ export function CreateRoomForm() {
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Room name</FormLabel>
+                      <FormLabel>Nome da Sala</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Type the room name..." />
+                        <Input {...field} placeholder="Digite o nome da sala..." />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -84,7 +83,7 @@ export function CreateRoomForm() {
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Description</FormLabel>
+                      <FormLabel>Descrição</FormLabel>
                       <FormControl>
                         <Textarea {...field} />
                       </FormControl>
