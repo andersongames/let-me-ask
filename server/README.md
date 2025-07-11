@@ -1,82 +1,82 @@
 # 🤖 NLW Agents
 
-Project developed during a 🚀 Rocketseat event using modern technologies to create an API integrated with AI.
+Project developed during a 🚀 Rocketseat event using modern technologies to create an API integrated with AI agents.
 
 ## 🧰 Technologies
 
-- **Node.js with native TypeScript** (experimental strip types)
-- **Fastify** – Fast and efficient web framework
-- **PostgreSQL with pgvector extension** for vector storage
-- **Drizzle ORM** – Type-safe database operations
-- **Zod** – Schema validation
-- **Docker** – Containerized database setup
-- **Biome** – Code linting and formatting
+- **Node.js with native TypeScript** – JavaScript superset with experimental `--experimental-strip-types` support
+- **Fastify** – Fast and efficient web framework for building APIs
+- **PostgreSQL** – Relational database with the **pgvector** extension for vector embeddings
+- **Drizzle ORM** – Type-safe, lightweight ORM for database operations
+- **Zod** – Runtime schema validation and static type inference
+- **Docker** – Containerized setup for running the database locally
+- **Biome** – All-in-one tool for linting, formatting, and code analysis
+- **Google Gemini** – AI model used for generating responses and processing content via API integration
 
 ## 🧱 Architecture
 
-The project follows a modular architecture with:
+The project follows a modular and scalable architecture with:
 
-- Separation of concerns between routes, schemas, and database connection
-- Schema validation with Zod for type safety
-- Type-safe ORM with Drizzle for database operations
-- Centralized environment variable validation
+- Clear separation of concerns between routes, schemas, controllers, and database layers
+- Schema validation with **Zod** for type-safe API input handling
+- Type-safe database operations using **Drizzle ORM**
+- Centralized configuration of environment variables for consistency and security
 
 ## ⚙️ Setup and Configuration
 
 ### ✅ Prerequisites
 
-- Node.js (version with support for `--experimental-strip-types`)
-- Docker and Docker Compose
+- Node.js (version 18+ with support for `--experimental-strip-types`)
+- Docker & Docker Compose
 
-### 1. Clone the repository
+### 🚀 Getting Started
+
+1. Clone the repository:
 
 ```bash
 git clone <repository-url>
 cd server
 ```
 
-### 2. Set up the database
+2. Start the database container:
 
 ```bash
 docker-compose up -d
 ```
 
-### 3. Configure environment variables
-
-Create a `.env` file in the root of the project (`/server`):
+3. Create a `.env` file in the root of the `/server` folder:
 
 ```
 PORT=3333
 DATABASE_URL="postgresql://docker:docker@localhost:5432/letmeask"
+GEMINI_API_KEY=[your-gemini-API-key]
 ```
 
-### 4. Install dependencies
+4. Install project dependencies:
 
 ```bash
 npm install
 ```
 
-### 5. Run database migrations
+5. Run database migrations:
 
 ```bash
 npx drizzle-kit migrate
 ```
 
-### 6. (Optional) Seed the database with example data
+6. (Optional) Seed the database with sample data:
 
 ```bash
 npm run db:seed
 ```
 
-### 7. Run the project
-
-**Development:**
+7. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-**Production:**
+To run in production mode:
 
 ```bash
 npm run start
@@ -84,13 +84,36 @@ npm run start
 
 ## 📜 Available Scripts
 
-- `npm run dev` – Runs the server in development mode with hot reload 🔁
+- `npm run dev` – Starts the server in development mode with hot reload 🔁
 - `npm run start` – Runs the server in production mode 🚀
+- `npm run db:generate` – Generates SQL migration files based on schema changes
+- `npm run db:migrate` – Runs the database migrations
 - `npm run db:seed` – Populates the database with sample data 🌱
 
-## 🌐 Endpoints
+## 🌐 API Endpoints
 
-The API will be available at `http://localhost:3333`
+Base URL: `http://localhost:3333`
 
 - `GET /health` – 💓 Application health check
-- `GET /rooms` – 🏠 List available rooms
+- `GET /rooms` – 🏠 Lists all available rooms
+- `GET /rooms/:roomId/questions` – ❓ Retrieves all questions for a specific room
+- `POST /rooms/:roomId/questions` – ✍️ Submits a new question to a specific room
+- `POST /rooms` – ➕ Creates a new room
+- `POST /rooms/:roomId/audio` – 🎙️ Uploads an audio file to be transcribed and processed via AI
+
+## 🛠️ Useful Commands
+
+- Generate migrations based on schema changes:
+  ```bash
+  npx drizzle-kit generate
+  ```
+
+- Apply migrations to the database:
+  ```bash
+  npx drizzle-kit migrate
+  ```
+
+- Open the Drizzle Studio interface:
+  ```bash
+  npx drizzle-kit studio
+  ```
